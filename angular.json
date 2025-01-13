@@ -93,10 +93,7 @@
 							"X-Frame-Options": "DENY",
 							"Strict-Transport-Security": "max-age=31536000; includeSubDomains",
 							"Referrer-Policy": "no-referrer",
-							"Permissions-Policy": "geolocation=(), microphone=(), camera=()",
-							"Access-Control-Allow-Origin": "https://insurance-app-container.netlify.app",
-							"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-							"Access-Control-Allow-Headers": "Content-Type, Authorization"
+							"Permissions-Policy": "geolocation=(), microphone=(), camera=()"
 							}
 					}
 				},
