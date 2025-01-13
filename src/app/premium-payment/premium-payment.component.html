@@ -1,0 +1,75 @@
+<div class="payment-container">
+    <h1>Payment Page</h1>
+  
+    <button *ngIf="!isPolicyDetailsAvailable" class="policy-details" (click)="getPolicyDetails()">Get Policy Details</button>
+    <div *ngIf="isPolicyDetailsAvailable">
+        <h2>Policy Details</h2>
+        <p><strong>Policy Name:</strong> {{ policyDetails.policyName }}</p>
+        <p><strong>Policy Number:</strong> {{ policyDetails.policyNumber }}</p>
+        <p><strong>Premium Amount:</strong> ₹{{ premiumAmount }}</p>
+    </div>
+    <h2>Make a Payment</h2>
+    <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="cardHolderName">Card Holder Name</label>
+        <input
+          id="cardHolderName"
+          type="text"
+          formControlName="cardHolderName"
+          placeholder="Enter card holder name"
+        />
+        <div *ngIf="paymentForm.get('cardHolderName')?.invalid && paymentForm.get('cardHolderName')?.touched">
+          Name is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="cardNumber">Card Number</label>
+        <input
+          id="cardNumber"
+          type="text"
+          formControlName="cardNumber"
+          placeholder="Enter 16-digit card number"
+        />
+        <div *ngIf="paymentForm.get('cardNumber')?.invalid && paymentForm.get('cardNumber')?.touched">
+          Enter a valid 16-digit card number.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="expiryDate">Expiry Date (MM/YY)</label>
+        <input
+          id="expiryDate"
+          type="text"
+          formControlName="expiryDate"
+          placeholder="MM/YY"
+        />
+        <div *ngIf="paymentForm.get('expiryDate')?.invalid && paymentForm.get('expiryDate')?.touched">
+          Enter a valid expiry date (MM/YY).
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="cvv">CVV</label>
+        <input
+          id="cvv"
+          type="text"
+          formControlName="cvv"
+          placeholder="Enter CVV"
+        />
+        <div *ngIf="paymentForm.get('cvv')?.invalid && paymentForm.get('cvv')?.touched">
+          Enter a valid 3-digit CVV.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="paymentForm.invalid">Pay Now</button>
+    </form>
+  
+    <div *ngIf="paymentSuccess === true" class="success-message">
+      Payment successful! Thank you for your payment.
+    </div>
+    <div *ngIf="paymentSuccess === false" class="error-message">
+      Payment failed. Please try again.
+    </div>
+  </div>
+  
